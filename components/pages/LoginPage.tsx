@@ -3,14 +3,12 @@ import { useState } from "react";
 import Html5QrcodePlugin from "../elements/Html5QrcodePlugin";
 
 const LoginPage = () => {
-  const [data, setData] = useState(""); // Changed to empty string since we're storing text
+  const [scannedText, setScannedText] = useState("");
 
-  const onNewScanResult = (decodedText: string, decodedResult: string) => {
-    // Use decodedText which contains the actual QR code content
-    setData(decodedText);
-
-    // Optional: If you need the full result object, you can console.log it
-    console.log("Full result:", decodedResult);
+  const handleScanSuccess = (decodedText: string, decodedResult: string) => {
+    setScannedText(decodedText); // Simpan hasil pemindaian ke state
+    console.log("Scan success:", decodedText);
+    console.log(decodedResult);
   };
 
   return (
@@ -20,14 +18,18 @@ const LoginPage = () => {
         Silahkan login menggunakan kartu ID card
       </div>
 
-      <Html5QrcodePlugin
-        fps={10}
-        qrbox={250}
-        disableFlip={false}
-        qrCodeSuccessCallback={onNewScanResult}
-      />
+      <Html5QrcodePlugin onScanSuccess={handleScanSuccess} />
 
-      <div>Halo : {data}</div>
+      <div>
+        {scannedText ? (
+          <>
+            <h2>Hasil Scan:</h2>
+            <p>{scannedText}</p>
+          </>
+        ) : (
+          <p>Belum ada hasil scan.</p>
+        )}
+      </div>
     </div>
   );
 };
