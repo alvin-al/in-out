@@ -1,0 +1,47 @@
+{
+  "name": "In Out App",
+  "short_name": "In Out",
+  "description": "A streamlined inventory application for efficient stock management.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "theme_color": "#8936FF",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icon512_maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "categories": ["productivity", "inventory", "tools"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.example.inoutapp"
+    }
+  ],
+  "prefer_related_applications": false
+}
