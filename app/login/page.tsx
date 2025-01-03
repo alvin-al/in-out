@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <div className='flex w-96 items-center'>
       <LoginPage />
     </div>
   );

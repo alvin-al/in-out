@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  return NextResponse.redirect(new URL("/login", request.url));
+  const token = request.cookies.get("user_token");
+
+  // Redirect ke /login jika token tidak ada atau kosong
+  if (!token || token.value === "") {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/",
+  matcher: ["/((?!login|register|_next/static|_next/image|favicon.ico).*)"],
 };

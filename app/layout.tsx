@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import TopBar from "@/components/elements/TopBar";
+import BottomBar from "@/components/elements/BottomBar";
+import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,17 +15,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "In Out App",
-  description: "App for recording in out",
-  manifest: "/manifest.json",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
+  if (pathname == "/login") {
+    return <>{children}</>;
+  }
   return (
     <html lang='en'>
       <link rel='manifest' href='/manifest.json' />
@@ -31,9 +33,11 @@ export default function RootLayout({
         content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
       />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen bg-slate-100`}
       >
-        {children}
+        <TopBar />
+        <div className='px-8 pt-4'>{children}</div>
+        <BottomBar />
       </body>
     </html>
   );
