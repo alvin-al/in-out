@@ -38,8 +38,8 @@ export default function BottomBar() {
           onChange={(event, newValue) => handleNavigation(newValue)}
         >
           <BottomNavigationAction label='Dashboard' icon={<HomeIcon />} />
-          <BottomNavigationAction label='Aktivitas' icon={<HistoryIcon />} />
-          <BottomNavigationAction label='Setting' icon={<SettingsIcon />} />
+          <BottomNavigationAction label='Activity' icon={<HistoryIcon />} />
+          <BottomNavigationAction label='Settings' icon={<SettingsIcon />} />
         </BottomNavigation>
       </Box>
     </div>

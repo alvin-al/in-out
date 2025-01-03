@@ -1,9 +1,7 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import TopBar from "@/components/elements/TopBar";
-import BottomBar from "@/components/elements/BottomBar";
-import { usePathname } from "next/navigation";
+import LayoutWrapper from "@/components/elements/LayoutWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,11 +18,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-
-  if (pathname == "/login") {
-    return <>{children}</>;
-  }
   return (
     <html lang='en'>
       <link rel='manifest' href='/manifest.json' />
@@ -35,9 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen bg-slate-100`}
       >
-        <TopBar />
-        <div className='px-8 pt-4'>{children}</div>
-        <BottomBar />
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );
