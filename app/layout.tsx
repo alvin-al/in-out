@@ -31,7 +31,7 @@ export default function RootLayout({
         content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
       />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen max-w-96`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
       >
         {children}
       </body>
