@@ -20,7 +20,7 @@ const TopBar = () => {
   }, [route]);
 
   return (
-    <div className='w-full font-semibold h-16 bg-white text-black flex items-center px-8'>
+    <div className='w-full font-semibold h-16 bg-white text-black flex items-center px-8 sticky top-0 z-10'>
       <div className='w-1/3'>
         {backButton && (
           <MyButton onClick={() => router.back()}>
@@ -29,9 +29,7 @@ const TopBar = () => {
         )}
       </div>
       <div className='text-lg w-1/3 text-center'>{path}</div>
-      <div className='w-1/3 flex justify-end text-sm'>
-        
-      </div>
+      <div className='w-1/3 flex justify-end text-sm'></div>
     </div>
   );
 };

@@ -49,10 +49,10 @@ const AddItem = () => {
   return (
     <div className='p-8 flex flex-col gap-8'>
       {/* Camera scanner */}
-      <div>
+      <div className=''>
         <Html5QrcodePlugin
           fps={5}
-          qrbox={200}
+          qrbox={100}
           disableFlip={false}
           qrCodeSuccessCallback={onNewScanResult}
         />
