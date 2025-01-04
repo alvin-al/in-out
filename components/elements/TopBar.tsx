@@ -1,33 +1,36 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import Button from "@mui/material/Button";
-import { logout } from "@/app/actions/auth";
+import React, { useMemo } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import MyButton from "./MyButton";
 
 const TopBar = () => {
-  const [path, setPath] = useState("Dashboard");
+  const router = useRouter();
   const route = usePathname().toString().replace("/", "");
-  useEffect(() => {
-    if (route != "") {
-      const capitalization = route[0].toUpperCase();
-      setPath(capitalization + route.slice(1));
-    } else {
-      setPath("Dashboard");
-    }
+
+  const path = useMemo(() => {
+    return route
+      ? route.replace(/^./, (str) => str.toLocaleUpperCase())
+      : "Dashboard";
+  }, [route]);
+
+  const backButton = useMemo(() => {
+    const mainPages = ["dashboard", "activity", "settings"];
+    return !mainPages.includes(route);
   }, [route]);
 
   return (
-    <div className='w-full font-semibold h-16 bg-white text-black px-8 items-center justify-between flex'>
-      <div className='text-lg'>{path}</div>
-      <div>
-        <Button
-          className='bg-green-600'
-          variant='outlined'
-          size='small'
-          onClick={() => logout()}
-        >
-          Log Out
-        </Button>
+    <div className='w-full font-semibold h-16 bg-white text-black flex items-center px-8'>
+      <div className='w-1/3'>
+        {backButton && (
+          <MyButton onClick={() => router.back()}>
+            <ArrowBackIcon />
+          </MyButton>
+        )}
+      </div>
+      <div className='text-lg w-1/3 text-center'>{path}</div>
+      <div className='w-1/3 flex justify-end text-sm'>
+        
       </div>
     </div>
   );

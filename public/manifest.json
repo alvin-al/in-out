@@ -20,7 +20,6 @@
       "purpose": "any"
     }
   ],
-  "orientation": "any",
   "display": "standalone",
   "dir": "auto",
   "lang": "en-US",

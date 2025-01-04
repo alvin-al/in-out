@@ -1,10 +1,10 @@
-import Activity from "@/components/pages/Activity";
+import AddItem from "@/components/pages/AddItem";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Activity />
+      <AddItem />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/elements/LayoutWrapper";
@@ -12,6 +11,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const metadata = {
+  title: "In Out App",
+  description: "App for recording in out",
+};
 
 export default function RootLayout({
   children,

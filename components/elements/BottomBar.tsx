@@ -6,11 +6,15 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home"; // Home icon
 import HistoryIcon from "@mui/icons-material/History"; // Aktivitas icon
 import SettingsIcon from "@mui/icons-material/Settings"; // Settings icon
-import { useRouter } from "next/navigation"; // Import useRouter for navigation
+import { usePathname, useRouter } from "next/navigation"; // Import useRouter for navigation
 
 export default function BottomBar() {
   const [value, setValue] = React.useState(0);
   const router = useRouter(); // Create router instance
+  const pathname = usePathname();
+
+
+
 
   const handleNavigation = (newValue: number) => {
     setValue(newValue);
@@ -28,6 +32,14 @@ export default function BottomBar() {
         break;
     }
   };
+
+  if (
+    pathname !== "/dashboard" &&
+    pathname !== "/activity" &&
+    pathname !== "/settings"
+  ) {
+    return null;
+  }
 
   return (
     <div className='absolute bottom-0 w-full'>
