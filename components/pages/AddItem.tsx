@@ -123,9 +123,15 @@ const AddItem = () => {
         </div>
       </div>
       {/* Submit button */}
-      <Button variant='contained' onClick={handleSubmit}>
-        Submit
-      </Button>
+      {pic === "" || activity === "" || listCode.length === 0 ? (
+        <Button variant='contained' disabled onClick={handleSubmit}>
+          Submit
+        </Button>
+      ) : (
+        <Button variant='contained' onClick={handleSubmit}>
+          Submit
+        </Button>
+      )}
     </div>
   );
 };
