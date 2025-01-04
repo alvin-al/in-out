@@ -24,6 +24,7 @@
   "dir": "auto",
   "lang": "en-US",
   "categories": ["productivity", "inventory", "tools"],
+  "orientation": "portrait",
   "screenshots": [
     {
       "src": "screenshot1.png",
