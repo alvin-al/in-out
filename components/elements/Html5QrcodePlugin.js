@@ -8,7 +8,7 @@ const qrcodeRegionId = "html5qr-code-full-region";
 const createConfig = (props) => {
   const config = {
     fps: 10,
-    qrbox: { width: 250, height: 250 },
+    qrbox: { width: 150, height: 150 },
     disableFlip: true,
     disableFileScan: true,
   };

@@ -9,12 +9,17 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Html5QrcodePlugin from "@/components/elements/Html5QrcodePlugin";
 import MyButton from "../elements/MyButton";
+import useReadData from "@/hooks/useReadData";
+import useCreateData from "@/hooks/useCreateData";
+import supabase from "@/utils/supabase/client";
 
 const AddItem = () => {
   const [activity, setActivity] = useState<string | null>("");
   const [pic, setPic] = useState("");
   const [listCode, setListCode] = useState<string[]>([]);
-  const cooldownRef = useRef<boolean>(false); // Use useRef for cooldown tracking
+  const cooldownRef = useRef<boolean>(false);
+  const { data } = useReadData("users");
+  const { createData } = useCreateData("in_out_logs");
 
   const handleActivity = (
     event: React.MouseEvent<HTMLElement>,
@@ -40,10 +45,39 @@ const AddItem = () => {
     }, 4000);
   };
 
-  const handleSubmit = () => {
-    console.log("Activity:", activity);
-    console.log("PIC:", pic);
-    console.log("List of scanned codes:", listCode);
+  const handleSubmit = async () => {
+    const submitData = {
+      activity_type: activity,
+      user_id: pic,
+      crate_id: listCode,
+      timestamp: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString(),
+    };
+
+    try {
+      const result = await createData([submitData]);
+      console.log(result);
+
+      const updateCrate = listCode.map(async (crateCode) => {
+        const status = activity === "in" ? true : false;
+
+        const { data, error } = await supabase
+          .from("crate")
+          .update({ status: status })
+          .match({ crate_code: crateCode });
+
+        console.log(data);
+        if (error) {
+          throw new Error(
+            `Failed to update crate status for ${crateCode}: ${error.message}`
+          );
+        }
+        console.log(`Crate ${crateCode} updated to status: ${status}`);
+
+        await Promise.all(updateCrate);
+      });
+    } catch (err) {
+      console.error("Error inserting data:", err);
+    }
   };
 
   return (
@@ -52,7 +86,7 @@ const AddItem = () => {
       <div className=''>
         <Html5QrcodePlugin
           fps={5}
-          qrbox={100}
+          qrbox={200}
           disableFlip={false}
           qrCodeSuccessCallback={onNewScanResult}
         />
@@ -115,9 +149,11 @@ const AddItem = () => {
               label='Person in Charge'
               onChange={handleChange}
             >
-              <MenuItem value='Alice'>Alice</MenuItem>
-              <MenuItem value='Bob'>Bob</MenuItem>
-              <MenuItem value='Charlie'>Charlie</MenuItem>
+              {data?.map((item, index) => (
+                <MenuItem key={index} value={item.user_id}>
+                  {item.user_name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
