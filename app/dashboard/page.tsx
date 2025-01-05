@@ -5,6 +5,7 @@ import Link from "next/link";
 import Dashboard from "@/components/pages/Dashboard";
 
 const page = () => {
+  
   return (
     <div>
       <div className='absolute right-8 bottom-20'>
@@ -15,6 +16,7 @@ const page = () => {
         </Link>
       </div>
       <Dashboard />
+
     </div>
   );
 };

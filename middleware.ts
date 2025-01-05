@@ -4,18 +4,20 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("user_token");
 
-  //Redirect jika sudah login
-  if (request.nextUrl.pathname === "/") {
-    if (token && token.value !== "") {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
-    }
-  }
-
-  // Redirect ke /login jika token tidak ada atau kosong
-  if (!token || token.value === "") {
+  // Jika tidak ada token, redirect ke login
+  if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
+  // Jika ada token dan user mengakses halaman login atau home, redirect ke dashboard
+  if (
+    request.nextUrl.pathname === "/login" ||
+    request.nextUrl.pathname === "/"
+  ) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  // Lanjutkan request ke halaman yang diminta
   return NextResponse.next();
 }
 

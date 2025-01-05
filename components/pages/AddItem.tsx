@@ -12,6 +12,7 @@ import MyButton from "../elements/MyButton";
 import useReadData from "@/hooks/useReadData";
 import useCreateData from "@/hooks/useCreateData";
 import supabase from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 const AddItem = () => {
   const [activity, setActivity] = useState<string | null>("");
@@ -20,6 +21,7 @@ const AddItem = () => {
   const cooldownRef = useRef<boolean>(false);
   const { data } = useReadData("users");
   const { createData } = useCreateData("in_out_logs");
+  const router = useRouter();
 
   const handleActivity = (
     event: React.MouseEvent<HTMLElement>,
@@ -73,6 +75,7 @@ const AddItem = () => {
         }
         console.log(`Crate ${crateCode} updated to status: ${status}`);
 
+        router.push("/confirmation"); // Arahkan ke halaman konfirmasi
         await Promise.all(updateCrate);
       });
     } catch (err) {

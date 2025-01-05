@@ -1,26 +1,27 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import supabase from "@/utils/supabase/client";
-import { Users } from "@/types";
+import { Card } from "@mui/material";
+import React from "react";
 
-const Dashboard = () => {
-  const [data, setData] = useState<Users[] | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await supabase.from("users").select().returns<Users[]>();
-      setData(data);
-    };
-    fetchData();
-  }, []);
-
+export default async function Dashboard() {
   return (
-    <div>
-      {data?.map((items, index) => (
-        <div key={index}>Nama: {items.user_name}</div>
-      ))}
+    <div className='divide-x divide-y grid '>
+      {/* {listMenuDashboard.map((items, index) => (
+        <Link key={index} href={items.link}>
+          <div className='w-1/4 h-20 text-center'>{items.nama}</div>
+        </Link>
+      ))} */}
+      <div>
+        <div>Jumlah kerat:</div>
+        <div>50 Buah</div>
+      </div>
+      <div>
+        <div>Kerat tersedia:</div>
+        <div>30 Buah</div>
+      </div>
+      <div>
+        <div>Kerat keluar:</div>
+        <div>20 Buah</div>
+      </div>
+      <Card />
     </div>
   );
-};
-
-export default Dashboard;
+}

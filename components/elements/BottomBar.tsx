@@ -13,9 +13,6 @@ export default function BottomBar() {
   const router = useRouter(); // Create router instance
   const pathname = usePathname();
 
-
-
-
   const handleNavigation = (newValue: number) => {
     setValue(newValue);
     switch (newValue) {
@@ -42,7 +39,7 @@ export default function BottomBar() {
   }
 
   return (
-    <div className='absolute bottom-0 w-full'>
+    <div className='fixed z-10 bottom-0 w-full '>
       <Box>
         <BottomNavigation
           showLabels

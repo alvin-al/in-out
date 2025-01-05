@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import InOutList from "../elements/InOutList";
 
 const Activity = () => {
   return (
-    <div>Activity</div>
-  )
-}
+    <div className='w-full'>
+      <InOutList />
+    </div>
+  );
+};
 
-export default Activity
+export default Activity;

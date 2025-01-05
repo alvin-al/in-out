@@ -11,9 +11,10 @@ export interface Users {
 export interface InOutLogs {
   log_id?: number; // Optional jika menggunakan auto-increment di database
   activity_type: string;
-  user_id: number;
+  pic: { user_name: string } | null;
   crate_id: string[]; // Ubah dari object[] ke string[]
   timestamp: number;
+  operator: { user_name: string } | null;
 }
 
 export interface Crate {
