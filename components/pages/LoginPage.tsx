@@ -11,9 +11,11 @@ const LoginPage = () => {
     const result = await login(Number(code));
 
     if (result?.user) {
-      setLoginMessage(`Selamat datang : ${result.user.nama}`);
+      setLoginMessage(`Selamat datang : ${result.user?.nama}`);
       document.cookie = `user_token={result.user.id}; path=/; max-age=86400`;
-      window.location.href = "/dashboard";
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 1500);
     } else {
       setLoginMessage(result?.message ?? "Login failed");
     }
@@ -30,11 +32,9 @@ const LoginPage = () => {
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
       />
-      {loginMessage && (
-        <div className='w-full flex items-center'>
-          <p>{loginMessage}</p>
-        </div>
-      )}
+      <div className='w-full flex text-lg justify-center'>
+        {loginMessage && <div>{loginMessage}</div>}
+      </div>
     </div>
   );
 };

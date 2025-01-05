@@ -19,8 +19,8 @@ export async function login(staffCode: number) {
   return {
     message: "Login berhasil.",
     user: {
-      nama: user.nama,
-      id: user.id,
+      nama: user.user_name,
+      id: user.user_id,
     },
   };
 }

@@ -8,8 +8,8 @@ const qrcodeRegionId = "html5qr-code-full-region";
 const createConfig = (props) => {
   const config = {
     fps: 10,
-    qrbox: { width: 150, height: 150 },
-    disableFlip: true,
+    qrbox: { width: 400, height: 400 },
+    disableFlip: true, // Tambahkan ini
     disableFileScan: true,
   };
   if (props.fps) {
@@ -54,7 +54,9 @@ const Html5QrcodePlugin = (props) => {
     };
   }, []);
 
-  return <div id={qrcodeRegionId} />;
+  return (
+    <div className='rounded-md text-gray-700 bg-blue-200' id={qrcodeRegionId} />
+  );
 };
 
 export default Html5QrcodePlugin;

@@ -8,11 +8,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Html5QrcodePlugin from "@/components/elements/Html5QrcodePlugin";
-import MyButton from "../elements/MyButton";
 import useReadData from "@/hooks/useReadData";
 import useCreateData from "@/hooks/useCreateData";
 import supabase from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+import BentoList from "../elements/BentoList";
 
 const AddItem = () => {
   const [activity, setActivity] = useState<string | null>("");
@@ -86,7 +86,7 @@ const AddItem = () => {
   return (
     <div className='p-8 flex flex-col gap-8'>
       {/* Camera scanner */}
-      <div className=''>
+      <div className='w-48 h-48 self-center'>
         <Html5QrcodePlugin
           fps={5}
           qrbox={200}
@@ -95,29 +95,7 @@ const AddItem = () => {
         />
       </div>
       {/* Daftar kerat */}
-      <div className='flex flex-col gap-2  border border-gray-400 '>
-        <div className='w-full h-12 text-lg items-center flex font-medium px-4 bg-gray-300'>
-          Daftar kerat:
-        </div>
-        <ul className='px-4'>
-          {listCode.map((item, index) => (
-            <li key={index}>
-              {index + 1}. {item}
-            </li>
-          ))}
-        </ul>
-        {listCode.length > 0 ? (
-          <div className='self-end h-12 w-full flex items-center justify-between bg-gray-300 px-4'>
-            <div>Total kerat = {listCode.length}</div>
-            <MyButton
-              className='bg-red-500 text-white border-0'
-              onClick={() => setListCode([])}
-            >
-              Ulangi
-            </MyButton>
-          </div>
-        ) : null}
-      </div>
+      <BentoList listCode={listCode} setListCode={setListCode} />
       {/* Aktivitas */}
       <div className='flex flex-row gap-4 items-center'>
         <div className='w-16'>Aktivitas</div>
