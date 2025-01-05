@@ -1,15 +1,10 @@
-import { Card } from "@mui/material";
+import Card from "../elements/Card";
 import React from "react";
 
 export default async function Dashboard() {
   return (
-    <div className='divide-x divide-y grid '>
-      {/* {listMenuDashboard.map((items, index) => (
-        <Link key={index} href={items.link}>
-          <div className='w-1/4 h-20 text-center'>{items.nama}</div>
-        </Link>
-      ))} */}
-      <div>
+    <div className='flex p-6 gap-4'>
+      {/* <div>
         <div>Jumlah kerat:</div>
         <div>50 Buah</div>
       </div>
@@ -20,7 +15,8 @@ export default async function Dashboard() {
       <div>
         <div>Kerat keluar:</div>
         <div>20 Buah</div>
-      </div>
+      </div> */}
+      <Card />
       <Card />
     </div>
   );
