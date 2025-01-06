@@ -21,6 +21,14 @@ export interface Crate {
   crate_code: string;
   color: string;
   size: number;
-  status: boolean;
+  available: boolean;
   number: number;
+}
+
+export interface CardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: number | undefined;
+  uom: string;
+  className?: string;
 }

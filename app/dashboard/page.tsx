@@ -16,7 +16,6 @@ const page = () => {
         </Link>
       </div>
       <Dashboard />
-
     </div>
   );
 };

@@ -86,7 +86,7 @@ const AddItem = () => {
   return (
     <div className='p-8 flex flex-col gap-8'>
       {/* Camera scanner */}
-      <div className='w-48 h-48 self-center'>
+      <div className='w-48 h-fit self-center'>
         <Html5QrcodePlugin
           fps={5}
           qrbox={200}
