@@ -10,7 +10,7 @@ const DashboardCard = ({ icon, title, value, uom, className }: CardProps) => {
       >
         <div className='flex text-gray-500 gap-4'>
           <div className=''>{icon}</div>
-          <div className='text-xl font-medium'>{title}</div>
+          <div className='text-lg font-medium'>{title}</div>
         </div>
         <div>
           <div className='text-6xl font-semibold flex'>
