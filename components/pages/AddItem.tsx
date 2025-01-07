@@ -1,39 +1,30 @@
 "use client";
 import React, { useState, useRef } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Html5QrcodePlugin from "@/components/elements/Html5QrcodePlugin";
-import useReadData from "@/hooks/useReadData";
 import useCreateData from "@/hooks/useCreateData";
+import BentoList from "../elements/BentoList";
+import ActivityAddItem from "../elements/ActivityAddItem";
+import PICAddItem from "../elements/PICAddItem";
 import supabase from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import BentoList from "../elements/BentoList";
+import { getCookie } from "cookies-next";
 
 const AddItem = () => {
-  const [activity, setActivity] = useState<string | null>("");
-  const [pic, setPic] = useState("");
   const [listCode, setListCode] = useState<string[]>([]);
   const cooldownRef = useRef<boolean>(false);
-  const { data } = useReadData("users");
   const { createData } = useCreateData("in_out_logs");
+  const [pic, setPic] = useState<string>("");
+  const [activity, setActivity] = useState<string>("");
+
   const router = useRouter();
 
-  const handleActivity = (
-    event: React.MouseEvent<HTMLElement>,
-    newActivity: string | null
-  ) => {
-    if (newActivity !== null) {
-      setActivity(newActivity);
-    }
+  const handlePicChange = (value: string) => {
+    setPic(value);
   };
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setPic(event.target.value as string);
+  const handleActivity = (value: string) => {
+    setActivity(value);
   };
 
   const onNewScanResult = (decodedText: string) => {
@@ -44,42 +35,55 @@ const AddItem = () => {
     cooldownRef.current = true; // Set cooldown to true
     setTimeout(() => {
       cooldownRef.current = false; // Reset cooldown after 5 seconds
-    }, 4000);
+    }, 3000);
   };
 
   const handleSubmit = async () => {
+    const crateOperator = getCookie("user_token") as unknown as number | null;
+
+    // const submitArrayData = listCode.map((code) => ({
+    //   activity_type: activity,
+    //   pic: pic,
+    //   crate_id: code,
+    //   timestamp: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString(),
+    //   batch_id: `${batch_date}_${pic}`,
+    //   operator: crateOperator,
+    // }));
     const submitData = {
       activity_type: activity,
-      user_id: pic,
+      pic: pic,
       crate_id: listCode,
       timestamp: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString(),
+      operator: crateOperator,
     };
 
     try {
-      const result = await createData([submitData]);
-      console.log(result);
+      // Kirim data log
+      await createData([submitData]);
 
-      const updateCrate = listCode.map(async (crateCode) => {
-        const status = activity === "in" ? true : false;
+      // Tentukan status berdasarkan aktivitas
+      const status = activity === "in"; // Bisa langsung menggunakan boolean
 
-        const { data, error } = await supabase
-          .from("crate")
-          .update({ status: status })
-          .match({ crate_code: crateCode });
+      // Lakukan update untuk setiap crate
+      const results = await Promise.all(
+        listCode.map((code) =>
+          supabase
+            .from("crate")
+            .update({ available: status }) // Pastikan field sesuai dengan yang ada di tabel
+            .match({ crate_code: code })
+        )
+      );
 
-        console.log(data);
-        if (error) {
-          throw new Error(
-            `Failed to update crate status for ${crateCode}: ${error.message}`
-          );
-        }
-        console.log(`Crate ${crateCode} updated to status: ${status}`);
+      // Cek apakah ada error pada salah satu hasil update
+      const hasError = results.some((result) => result.error);
 
-        router.push("/confirmation"); // Arahkan ke halaman konfirmasi
-        await Promise.all(updateCrate);
-      });
+      if (hasError) {
+        throw new Error("Failed to update some crates.");
+      }
+
+      router.push("/confirmation");
     } catch (err) {
-      console.error("Error inserting data:", err);
+      console.error(err);
     }
   };
 
@@ -97,48 +101,9 @@ const AddItem = () => {
       {/* Daftar kerat */}
       <BentoList listCode={listCode} setListCode={setListCode} />
       {/* Aktivitas */}
-      <div className='flex flex-row gap-4 items-center'>
-        <div className='w-16'>Aktivitas</div>
-        <div className='text-base'>
-          <ToggleButtonGroup
-            value={activity}
-            exclusive
-            onChange={handleActivity}
-            aria-label='text alignment'
-          >
-            <ToggleButton value='out' aria-label='centered'>
-              Keluar (Out)
-            </ToggleButton>
-            <ToggleButton value='in' aria-label='left aligned'>
-              Masuk (In)
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
-      </div>
+      <ActivityAddItem onActivitySelect={handleActivity} />
       {/* PIC */}
-      <div className='flex flex-row gap-4 items-center'>
-        <div className='w-16'>Nama PIC</div>
-        <div>
-          <FormControl sx={{ minWidth: 230 }}>
-            <InputLabel id='demo-simple-select-label'>
-              Person in Charge
-            </InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={pic}
-              label='Person in Charge'
-              onChange={handleChange}
-            >
-              {data?.map((item, index) => (
-                <MenuItem key={index} value={item.user_id}>
-                  {item.user_name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-      </div>
+      <PICAddItem onPicChange={handlePicChange} />
       {/* Submit button */}
       {pic === "" || activity === "" || listCode.length === 0 ? (
         <Button variant='contained' disabled onClick={handleSubmit}>

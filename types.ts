@@ -15,6 +15,7 @@ export interface InOutLogs {
   crate_id: string[]; // Ubah dari object[] ke string[]
   timestamp: number;
   operator: { user_name: string } | null;
+  batch_id: string | null;
 }
 
 export interface Crate {

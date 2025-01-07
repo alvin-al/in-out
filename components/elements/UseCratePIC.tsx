@@ -6,9 +6,9 @@ const UseCratePIC = () => {
   return (
     <Link href='/crate-detail'>
       <div
-        className={`h-fit bg-gray-300 rounded-xl flex p-8 flex-wrap gap-5 items-center justify-between`}
+        className={`h-fit bg-gray-300 text-gray-700 rounded-xl flex p-4 flex-wrap gap-5 items-center justify-between bghad`}
       >
-        <div className='flex text-gray-500 gap-4 w-1/2'>
+        <div className='flex  gap-4 w-1/2'>
           <div className=''>
             <IoPeople size='3em' />
           </div>

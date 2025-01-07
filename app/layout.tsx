@@ -1,15 +1,13 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/elements/LayoutWrapper";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Import Jakarta Plus
+const jakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta-sans",
+  weight: ["200", "400", "300", "500", "600", "700", "800"],
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -30,7 +28,7 @@ export default function RootLayout({
         content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
       />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen bg-slate-100`}
+        className={`${jakartaSans.variable} antialiased h-screen w-screen `}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

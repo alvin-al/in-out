@@ -13,7 +13,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <TopBar />
-      <div className=''>{children}</div>
+      <div className='pb-16'>{children}</div>
+      
       <BottomBar />
     </div>
   );

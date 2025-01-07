@@ -17,27 +17,25 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
         </div>
       </div>
       {/* Child */}
-      <div className='grid gap-2 bg-white px-4 py-2 rounded-md divide-y'>
-        <div className='w-full leading-none flex justify-center'>
-          Ukuran Besar
-        </div>
-        <div className='w-full grid grid-flow-col divide-x center'>
-          <div className='text-sm grid font-semibold pl-3 py-1'>
+      <div className='grid gap-2 bg-white px-4 py-2 rounded-md divide-y '>
+        <div className='leading-none flex justify-center'>Ukuran Besar</div>
+        <div className=' text-center w-full grid grid-flow-col divide-x '>
+          <div className='text-sm grid font-semibold'>
             Kuning{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Biru <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Merah{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Hijau{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Hitam{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
@@ -47,23 +45,23 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
         <div className='w-full leading-none flex justify-center'>
           Ukuran Sedang
         </div>
-        <div className='w-full grid grid-flow-col divide-x center'>
-          <div className='text-sm grid font-semibold pl-3 py-1'>
+        <div className='text-center w-full grid grid-flow-col divide-x'>
+          <div className='text-sm grid font-semibold'>
             Kuning{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Biru <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Merah{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Hijau{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Hitam{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
@@ -73,23 +71,23 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
         <div className='w-full leading-none flex justify-center'>
           Ukuran Kecil
         </div>
-        <div className='w-full grid grid-flow-col divide-x center'>
-          <div className='text-sm grid font-semibold pl-3 py-1'>
+        <div className='text-center w-full grid grid-flow-col divide-x '>
+          <div className='text-sm grid font-semibold'>
             Kuning{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Biru <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Merah{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Hijau{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>
-          <div className='text-sm font-semibold grid pl-3 py-1'>
+          <div className='text-sm font-semibold grid'>
             Hitam{" "}
             <span className='text-xs font-light'>{value + " " + uom}</span>
           </div>

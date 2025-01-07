@@ -12,7 +12,7 @@ const LoginPage = () => {
 
     if (result?.user) {
       setLoginMessage(`Selamat datang : ${result.user?.nama}`);
-      document.cookie = `user_token={result.user.id}; path=/; max-age=86400`;
+      document.cookie = `user_token=${result.user.id}; path=/; max-age=86400`;
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 1500);
