@@ -83,9 +83,14 @@ const InOutList = () => {
               </div>
               <div className='text-sm font-medium text-gray-500'>
                 <div>
+                  {new Date(items.timestamp).toLocaleTimeString("UK", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
+                <div>
                   {(() => {
                     const tanggal = new Date(items.timestamp);
-                    // Format tanggal dengan toLocaleDateString
                     const tanggalFormatted = tanggal.toLocaleDateString(
                       "id-ID",
                       {

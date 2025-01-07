@@ -2,10 +2,8 @@ import React from "react";
 import Dashboard from "@/components/pages/Dashboard";
 
 const page = () => {
-  
   return (
     <div>
-      
       <Dashboard />
     </div>
   );

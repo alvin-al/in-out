@@ -9,6 +9,7 @@ import PICAddItem from "../elements/PICAddItem";
 import supabase from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { getCookie } from "cookies-next";
+import TopBar from "../elements/TopBar";
 
 const AddItem = () => {
   const [listCode, setListCode] = useState<string[]>([]);
@@ -88,32 +89,35 @@ const AddItem = () => {
   };
 
   return (
-    <div className='p-8 flex flex-col gap-8'>
-      {/* Camera scanner */}
-      <div className='h-fit self-center'>
-        <Html5QrcodePlugin
-          fps={5}
-          qrbox={200}
-          disableFlip={false}
-          qrCodeSuccessCallback={onNewScanResult}
-        />
+    <div>
+      <TopBar title='Add Item' />
+      <div className='p-4 flex flex-col gap-4'>
+        {/* Camera scanner */}
+        <div className='h-fit self-center'>
+          <Html5QrcodePlugin
+            fps={5}
+            qrbox={150}
+            disableFlip={false}
+            qrCodeSuccessCallback={onNewScanResult}
+          />
+        </div>
+        {/* Daftar kerat */}
+        <BentoList listCode={listCode} setListCode={setListCode} />
+        {/* Aktivitas */}
+        <ActivityAddItem onActivitySelect={handleActivity} />
+        {/* PIC */}
+        <PICAddItem onPicChange={handlePicChange} />
+        {/* Submit button */}
+        {pic === "" || activity === "" || listCode.length === 0 ? (
+          <Button variant='contained' disabled onClick={handleSubmit}>
+            Submit
+          </Button>
+        ) : (
+          <Button variant='contained' onClick={handleSubmit}>
+            Submit
+          </Button>
+        )}
       </div>
-      {/* Daftar kerat */}
-      <BentoList listCode={listCode} setListCode={setListCode} />
-      {/* Aktivitas */}
-      <ActivityAddItem onActivitySelect={handleActivity} />
-      {/* PIC */}
-      <PICAddItem onPicChange={handlePicChange} />
-      {/* Submit button */}
-      {pic === "" || activity === "" || listCode.length === 0 ? (
-        <Button variant='contained' disabled onClick={handleSubmit}>
-          Submit
-        </Button>
-      ) : (
-        <Button variant='contained' onClick={handleSubmit}>
-          Submit
-        </Button>
-      )}
     </div>
   );
 };

@@ -17,8 +17,6 @@ export default function CrateDetail() {
     fetchData();
   }, []);
 
-  console.log(crateData);
-
   return (
     <div className='flex w-full h-full flex-col p-6 gap-6'>
       <CrateCard
@@ -26,12 +24,7 @@ export default function CrateDetail() {
         uom='Buah'
         title='Total kerat'
         icon={<FaBoxes size='2em' />}
-      />
-      <CrateCard
-        value={crateData?.filter((crate) => crate.available === true).length}
-        title='Kerat tersedia'
-        icon={<FaBoxes size='2em' />}
-        uom='Buah'
+        link='/crate/total'
       />
     </div>
   );

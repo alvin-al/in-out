@@ -11,7 +11,7 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
           <div className='text-2xl font-medium'>{title}</div>
         </div>
         <div>
-          <div className='text-6xl font-semibold flex'>
+          <div className='text-4xl font-semibold flex'>
             {value} <span className='self-end mb-1 ml-2 text-lg'>{uom}</span>
           </div>
         </div>
@@ -21,23 +21,19 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
         <div className='leading-none flex justify-center'>Ukuran Besar</div>
         <div className=' text-center w-full grid grid-flow-col divide-x '>
           <div className='text-sm grid font-semibold'>
-            Kuning{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Kuning <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Biru <span className='text-xs font-light'>{value + " " + uom}</span>
+            Biru <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Merah{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Merah <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Hijau{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Hijau <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Hitam{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Hitam <span className='text-xs font-light'>{value}</span>
           </div>
         </div>
       </div>
@@ -47,23 +43,19 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
         </div>
         <div className='text-center w-full grid grid-flow-col divide-x'>
           <div className='text-sm grid font-semibold'>
-            Kuning{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Kuning <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Biru <span className='text-xs font-light'>{value + " " + uom}</span>
+            Biru <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Merah{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Merah <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Hijau{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Hijau <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Hitam{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Hitam <span className='text-xs font-light'>{value}</span>
           </div>
         </div>
       </div>
@@ -73,23 +65,19 @@ const CrateCard = ({ icon, title, value, uom }: CardProps) => {
         </div>
         <div className='text-center w-full grid grid-flow-col divide-x '>
           <div className='text-sm grid font-semibold'>
-            Kuning{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Kuning <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Biru <span className='text-xs font-light'>{value + " " + uom}</span>
+            Biru <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Merah{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Merah <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Hijau{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Hijau <span className='text-xs font-light'>{value}</span>
           </div>
           <div className='text-sm font-semibold grid'>
-            Hitam{" "}
-            <span className='text-xs font-light'>{value + " " + uom}</span>
+            Hitam <span className='text-xs font-light'>{value}</span>
           </div>
         </div>
       </div>

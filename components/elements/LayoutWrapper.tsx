@@ -1,5 +1,4 @@
 "use client";
-import TopBar from "@/components/elements/TopBar";
 import BottomBar from "@/components/elements/BottomBar";
 import { usePathname } from "next/navigation";
 
@@ -12,9 +11,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div>
-      <TopBar />
       <div className='pb-16'>{children}</div>
-      
+
       <BottomBar />
     </div>
   );

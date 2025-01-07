@@ -20,7 +20,7 @@ const ActivityAddItem = ({
   };
 
   return (
-    <div className='flex flex-row gap-4 items-center'>
+    <div className='flex flex-row gap-4 items-center p-4 rounded-md'>
       <div className='w-24'>Aktivitas</div>
       <div className='text-base'>
         <ToggleButtonGroup
@@ -28,6 +28,7 @@ const ActivityAddItem = ({
           exclusive
           onChange={handleActivity}
           aria-label='text alignment'
+          sx={{ height: "60px", width: "300px" }}
         >
           <ToggleButton
             value='out'

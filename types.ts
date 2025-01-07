@@ -32,4 +32,5 @@ export interface CardProps {
   value: number | undefined;
   uom: string;
   className?: string;
+  link?: string | undefined;
 }

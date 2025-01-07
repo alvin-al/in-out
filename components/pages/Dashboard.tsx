@@ -50,6 +50,7 @@ export default function Dashboard() {
           title='Total kerat'
           icon={<FaBoxes size='2em' />}
           className='bg-gray-300 text-gray-700'
+          link='/crate/total'
         />
         <DashboardCard
           value={crateData?.filter((crate) => crate.available === true).length}
@@ -57,6 +58,7 @@ export default function Dashboard() {
           icon={<FaBoxes size='2em' />}
           uom='Buah'
           className='bg-gray-300 text-gray-700'
+          link='/crate/available'
         />
         <DashboardCard
           value={

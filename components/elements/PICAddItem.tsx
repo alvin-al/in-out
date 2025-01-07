@@ -16,7 +16,10 @@ const PICAddItem = ({
 
   React.useEffect(() => {
     const listName = async () => {
-      const { data, error } = await supabase.from("users").select("*");
+      const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .in("position", ["Driver", "Supplier"]);
       if (error) {
         console.error("Error fetching name");
       }
@@ -32,10 +35,10 @@ const PICAddItem = ({
   };
 
   return (
-    <div className='flex flex-row gap-4 items-center'>
+    <div className='flex flex-row gap-4 items-center p-4'>
       <div className='w-24'>Nama PIC</div>
       <div>
-        <FormControl sx={{ minWidth: 230 }}>
+        <FormControl sx={{ minWidth: 230, height: "60px", width: "200px" }}>
           <InputLabel id='demo-simple-select-label'>
             Person in Charge
           </InputLabel>
