@@ -23,7 +23,7 @@ const InOutList = () => {
   }, []);
 
   return (
-    <div className='p-4'>
+    <div className='p-4 grid gap-4'>
       {/* {data?.map((items, index) => (
         <Link href={`/activity/${items.log_id}`} key={index}>
           <div className='w-full h-fit py-4 items-center flex border-b border-gray-400 px-4'>
@@ -69,7 +69,11 @@ const InOutList = () => {
       ))} */}
       {data?.map((items, index) => (
         <Link href={`/activity/${items.log_id}`} key={index}>
-          <div className='w-full h-fit py-4 items-center flex px-4 bg-red-100 rounded-md'>
+          <div
+            className={`w-full h-fit py-4 items-center flex px-4 rounded-md ${
+              items.activity_type == "in" ? "bg-blue-100" : "bg-red-100"
+            }`}
+          >
             <div className='w-24'>
               {items.activity_type == "in" ? (
                 <InOutIcon isIn={true} />

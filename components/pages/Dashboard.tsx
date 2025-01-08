@@ -39,7 +39,7 @@ export default function Dashboard() {
   return (
     <div className='p-4'>
       <AddItemButton />
-      <div className='w-full h-48 px-8 py-4 text-4xl leading-normal font-semibold text-gray-800 rounded-md bg-slate-100 mb-4 shadow-sm'>
+      <div className='w-full min-h-36 px-8 py-4 text-4xl leading-normal font-semibold text-gray-800 rounded-md bg-slate-100 mb-4 shadow-sm'>
         Selamat Datang,
         <br /> {userName?.[0]?.user_name}
       </div>

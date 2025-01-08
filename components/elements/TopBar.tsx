@@ -8,13 +8,13 @@ const TopBar = ({ title }: { title: string }) => {
 
   return (
     <div className='w-full font-semibold h-16 bg-white text-gray-700 flex items-center px-4 sticky top-0 z-10 shadow-md'>
-      <div className='w-1/3'>
+      <div className='w-1/6  '>
         <MyButton onClick={() => router.back()}>
           <ArrowBackIcon />
         </MyButton>
       </div>
-      <div className='text-lg w-1/3 text-center'>{title}</div>
-      <div className='w-1/3 flex justify-end text-sm'></div>
+      <div className='text-lg w-4/6 text-center'>{title}</div>
+      <div className='w-1/6 flex justify-end text-sm'></div>
     </div>
   );
 };

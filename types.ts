@@ -21,16 +21,17 @@ export interface InOutLogs {
 export interface Crate {
   crate_code: string;
   color: string;
-  size: number;
+  size: string;
   available: boolean;
   number: number;
 }
 
 export interface CardProps {
+  value?: number;
   icon: React.ReactNode;
   title: string;
-  value: number | undefined;
   uom: string;
   className?: string;
   link?: string | undefined;
+  crateData?: Crate[] | null;
 }

@@ -5,12 +5,15 @@ import React, { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/client";
 import { FaBoxes } from "react-icons/fa";
 
-export default function CrateDetail() {
+export default function CrateDetailAvailable() {
   const [crateData, setCrateData] = useState<Crate[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await supabase.from("crate").select("*");
+      const { data } = await supabase
+        .from("crate")
+        .select("*")
+        .eq("available", true);
       setCrateData(data);
       return;
     };

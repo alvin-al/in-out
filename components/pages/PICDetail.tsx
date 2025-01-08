@@ -7,6 +7,13 @@ import TopBar from "../elements/TopBar";
 
 const PICDetail = ({ id }: { id: string }) => {
   const [data, setData] = useState<InOutLogs[] | null>([]);
+  const [formattedDate, setFormattedDate] = useState<{
+    date: string;
+    time: string;
+  }>({
+    date: "",
+    time: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +21,27 @@ const PICDetail = ({ id }: { id: string }) => {
         .from("in_out_logs")
         .select("*,pic:in_out_logs_pic_fkey(user_name)")
         .eq("log_id", id);
+
       setData(data);
+
+      if (data && data.length > 0) {
+        const timestamp = data[0].timestamp;
+        const dateObj = new Date(timestamp);
+
+        const formattedDate = dateObj.toLocaleDateString("id-ID", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        });
+
+        const formattedTime = dateObj.toLocaleTimeString("id-ID", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        // Set hasil ke state
+        setFormattedDate({ date: formattedDate, time: formattedTime });
+      }
     };
 
     fetchData();
@@ -32,35 +59,26 @@ const PICDetail = ({ id }: { id: string }) => {
         </div>
         <div className='bg-yellow-200 p-4 rounded-md flex gap-2 justify-between flex-col'>
           <div className='text-xs font-medium leading-relaxed'>
-            <div>03:00 WIB</div>
-            <div>07 Januari 2025</div>
+            <div>{formattedDate.time} WIB</div>
+            <div>{formattedDate.date}</div>
             <div>By : Alvin</div>
           </div>
           <div className='text-3xl font-semibold'>3 Kerat</div>{" "}
         </div>{" "}
-        <div className='bg-yellow-200 flex rounded-md col-span-2 items-center gap-4'>
-          <div className='w-16 min-h-12 bg-slate-200 rounded-l-md flex justify-center items-center text-xl'>
-            1
-          </div>
-          <div className='text-xl'>BK1</div>
+        <div className=' col-span-2'>
+          <ul className='grid gap-4'>
+            {data?.[0]?.crate_id.map((item, index) => (
+              <li key={index}>
+                <div className='bg-yellow-200 flex rounded-md col-span-2 items-center gap-4'>
+                  <div className='w-16 min-h-12 bg-slate-200 rounded-l-md flex justify-center items-center text-xl'>
+                    {index + 1}
+                  </div>
+                  <div className='text-xl'>{item}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className='bg-yellow-200 flex rounded-md col-span-2 items-center gap-4'>
-          <div className='w-16 min-h-12 bg-slate-200 rounded-l-md flex justify-center items-center text-xl'>
-            2
-          </div>
-          <div className='text-xl'>BK1</div>
-        </div>
-        <div className='bg-yellow-200 flex rounded-md col-span-2 items-center gap-4'>
-          <div className='w-16 min-h-12 bg-slate-200 rounded-l-md flex justify-center items-center text-xl'>
-            3
-          </div>
-          <div className='text-xl'>BK1</div>
-        </div>
-        {/* {data?.map((item) => (
-        <div key={item.log_id}>
-          <div>Nama : {item.pic?.user_name}</div>
-        </div>
-      ))} */}
       </div>
     </div>
   );
