@@ -36,6 +36,7 @@ const Html5QrcodePlugin = (props) => {
 
     // Override success callback to add beep sound
     const qrCodeSuccessCallbackWithSound = (decodedText, decodedResult) => {
+      audio.volume = 0.5;
       audio.play(); // Play beep sound
       props.qrCodeSuccessCallback(decodedText, decodedResult);
     };

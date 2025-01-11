@@ -27,8 +27,6 @@ const UseCratePIC = () => {
     fetchData();
   }, []);
 
-  console.log(data);
-
   return (
     <Link href='/'>
       <div

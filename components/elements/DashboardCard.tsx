@@ -16,7 +16,7 @@ const DashboardCard = ({
       {link ? (
         <Link href={link}>
           <div
-            className={`${className} w-full min-h-48 rounded-xl flex p-4 flex-col flex-wrap`}
+            className={`${className} w-full min-h-48 rounded-xl flex p-4 flex-col flex-wrap gap-4`}
           >
             <div className='flex gap-2 flex-col'>
               <div className='ml-1'>{icon}</div>
