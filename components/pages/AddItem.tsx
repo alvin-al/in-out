@@ -126,7 +126,11 @@ const AddItem = () => {
             Submit
           </Button>
         ) : (
-          <Button variant='contained' onClick={handleSubmit}>
+          <Button
+            variant='contained'
+            onClick={handleSubmit}
+            sx={{ bgcolor: "#20631e" }}
+          >
             Submit
           </Button>
         )}

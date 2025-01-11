@@ -16,7 +16,7 @@ const BentoList = ({
   return (
     <div className='bg-white rounded-md shadow-lg overflow-hidden'>
       {/* Header */}
-      <div className='bg-gradient-to-r from-blue-500 to-blue-600 p-4'>
+      <div className='bg-[#20631e] p-4'>
         <h2 className='text-base font-semibold text-white'>Daftar Kerat</h2>
       </div>
 
@@ -27,17 +27,17 @@ const BentoList = ({
             {listCode.map((item, index) => (
               <li
                 key={index}
-                className='flex items-center p-3 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow justify-between'
+                className='flex items-center p-3 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow justify-between'
               >
                 <span className='flex items-center'>
-                  <span className='flex items-center justify-center w-8 h-8 mr-3 bg-blue-100 text-blue-600 rounded-full font-medium'>
+                  <span className='flex items-center justify-center w-8 h-8 mr-3 bg-[#e6f4e7] text-[#20631e] rounded-full font-medium'>
                     {index + 1}
                   </span>
-                  <span className='text-gray-700'>{item}</span>{" "}
+                  <span className='text-gray-700'>{item}</span>
                 </span>
                 <span className=''>
                   <button
-                    className='p-2 text-white bg-red-500 rounded-full'
+                    className='p-2 text-white bg-[#20631e] hover:bg-[#184f17] rounded-full transition-colors'
                     onClick={() => handleRemoveItem(index)}
                   >
                     <FaRegTrashAlt className='w-4 h-4' />
@@ -55,16 +55,16 @@ const BentoList = ({
 
       {/* Footer */}
       {listCode.length > 0 && (
-        <div className='border-t border-gray-100'>
+        <div className='border-t border-gray-200'>
           <div className='p-4 flex items-center justify-between bg-white'>
             <div className='flex items-center space-x-2'>
-              <span className='px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium'>
+              <span className='px-3 py-1 bg-[#e6f4e7] text-[#20631e] rounded-full text-sm font-medium'>
                 Total Kerat: {listCode.length}
               </span>
             </div>
             <button
               onClick={() => setListCode([])}
-              className='flex items-center px-4 py-2 gap-1 bg-blue-100 hover:bg-red-600 text-gray-800 rounded-lg transition-colors'
+              className='flex items-center px-4 py-2 gap-1 bg-[#e6f4e7] text-[#20631e] hover:bg-[#184f17] hover:text-white rounded-lg transition-colors'
             >
               <VscDebugRestart />
               Ulangi

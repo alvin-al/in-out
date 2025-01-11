@@ -39,16 +39,40 @@ export default function BottomBar() {
   }
 
   return (
-    <div className='fixed z-10 bottom-0 w-full shadow-sm '>
+    <div className='fixed z-10 bottom-0 w-full shadow-sm'>
       <Box>
         <BottomNavigation
           showLabels
           value={value}
           onChange={(event, newValue) => handleNavigation(newValue)}
         >
-          <BottomNavigationAction label='Dashboard' icon={<HomeIcon />} />
-          <BottomNavigationAction label='Activity' icon={<HistoryIcon />} />
-          <BottomNavigationAction label='Settings' icon={<SettingsIcon />} />
+          <BottomNavigationAction
+            label='Dashboard'
+            icon={<HomeIcon />}
+            sx={{
+              "&.Mui-selected": {
+                color: "green",
+              },
+            }}
+          />
+          <BottomNavigationAction
+            label='Activity'
+            icon={<HistoryIcon />}
+            sx={{
+              "&.Mui-selected": {
+                color: "green",
+              },
+            }}
+          />
+          <BottomNavigationAction
+            label='Settings'
+            icon={<SettingsIcon />}
+            sx={{
+              "&.Mui-selected": {
+                color: "green",
+              },
+            }}
+          />
         </BottomNavigation>
       </Box>
     </div>

@@ -60,7 +60,7 @@ const Html5QrcodePlugin = (props) => {
   }, []);
 
   return (
-    <div className='rounded-md text-gray-700 bg-blue-200' id={qrcodeRegionId} />
+    <div className='rounded-md text-white  bg-green-800' id={qrcodeRegionId} />
   );
 };
 

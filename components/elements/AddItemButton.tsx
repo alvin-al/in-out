@@ -7,7 +7,7 @@ const AddItemButton = () => {
   return (
     <div className='right-8 bottom-20 fixed'>
       <Link href={"/add-item"}>
-        <Fab color='primary' aria-label='add'>
+        <Fab sx={{ bgcolor: "#20631e", color: "#ffffff" }} aria-label='add'>
           <AddIcon />
         </Fab>
       </Link>

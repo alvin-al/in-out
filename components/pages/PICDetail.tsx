@@ -49,15 +49,20 @@ const PICDetail = ({ id }: { id: string }) => {
     <div>
       <TopBar title={`Detail Kerat ${data?.[0]?.pic_name}`} />
       <div className='p-4 grid grid-cols-2 gap-4'>
-        <div className='bg-yellow-200  p-4 rounded-md flex justify-between flex-col'>
+        <div className='bg-slate-100 p-4 rounded-md flex justify-between flex-col'>
           <div className=''>
-            <InOutIcon isIn={false} />
+            {" "}
+            {data?.[0]?.activity_type == "in" ? (
+              <InOutIcon isIn={true} />
+            ) : (
+              <InOutIcon isIn={false} />
+            )}
           </div>
           <div className='text-3xl font-semibold mt-2'>
             {data?.[0]?.pic_name}
           </div>
         </div>
-        <div className='bg-yellow-200 p-4 rounded-md flex gap-2 justify-between flex-col'>
+        <div className='bg-slate-100 p-4 rounded-md flex gap-2 justify-between flex-col'>
           <div className='text-xs font-medium leading-relaxed'>
             <div>{formattedTime} WIB</div>
             <div>{formattedDate}</div>
@@ -66,14 +71,14 @@ const PICDetail = ({ id }: { id: string }) => {
           <div className='text-3xl font-semibold'>{crate?.length} Kerat</div>{" "}
         </div>{" "}
         <div className=' col-span-2'>
-          <ul className='grid gap-4'>
+          <ul className='overflow-hidden rounded-md divide-y'>
             {crate?.map((item, index) => (
               <li key={index}>
-                <div className='bg-yellow-200 flex rounded-md col-span-2 items-center gap-4'>
-                  <div className='w-16 min-h-12 bg-slate-200 rounded-l-md flex justify-center items-center text-xl'>
+                <div className='bg-[#20631e] text-white flex col-span-2 items-center gap-4'>
+                  <div className='w-16 min-h-12 flex bg-green-700 justify-center items-center text-md'>
                     {index + 1}
                   </div>
-                  <div className='text-xl'>{item.crate_id}</div>
+                  <div className='text-md'>{item.crate_id}</div>
                 </div>
               </li>
             ))}

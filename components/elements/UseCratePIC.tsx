@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { IoPeople } from "react-icons/io5";
-import { Crate, Users } from "@/types";
 import supabase from "@/utils/supabase/client";
 
 const UseCratePIC = () => {
-  const [data, setData] = useState<((Crate & { user_id: Users }) | null)[]>([]);
   const [pic, setPic] = useState<{ user_name: string; count_id: number }[]>([]);
 
   useEffect(() => {
@@ -19,7 +17,6 @@ const UseCratePIC = () => {
       ]);
 
       if (userData !== null && data !== null) {
-        setData(data);
         setPic(userData);
       }
     };
@@ -30,10 +27,14 @@ const UseCratePIC = () => {
   return (
     <Link href='/'>
       <div
-        className={`h-fit bg-gray-300 text-gray-700 rounded-xl flex p-4 flex-wrap gap-5 flex-col`}
+        className={`h-fit bg-[#20631e] text-white rounded-xl flex p-4 flex-wrap gap-5 flex-col`}
       >
-        <div className='flex items-center justify-between'>
-          <div className='flex gap-4 w-1/2'>
+        <div
+          className={`flex justify-between flex-col border-b pb-4 ${
+            pic?.length > 0 ? "border-b border-white" : ""
+          }`}
+        >
+          <div className='flex gap-4'>
             <div className=''>
               <IoPeople size='3em' />
             </div>

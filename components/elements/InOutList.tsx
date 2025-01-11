@@ -26,8 +26,8 @@ const InOutList = () => {
       {data?.map((items, index) => (
         <Link href={`/activity/${items.batches}`} key={index}>
           <div
-            className={`w-full h-fit py-4 items-center flex px-4 rounded-md ${
-              items.activity_type == "in" ? "bg-blue-100" : "bg-red-100"
+            className={`w-full h-fit py-4 items-center flex px-4 rounded-xl shadow-md ${
+              items.activity_type == "in" ? "" : "bg-orange-100"
             }`}
           >
             <div className='w-24'>
@@ -41,7 +41,7 @@ const InOutList = () => {
               <div className='font-semibold text-2xl mb-1'>
                 {items?.pic_name}
               </div>
-              <div className='text-sm font-medium text-gray-500'>
+              <div className='text-sm font-medium text-gray-800'>
                 <div>
                   {new Date(items.log_time).toLocaleTimeString("UK", {
                     hour: "2-digit",
@@ -66,7 +66,11 @@ const InOutList = () => {
                 <div>By: {items.operator_name}</div>
               </div>
             </div>
-            <div className='w-24 text-center bg-white p-2 rounded-md'>
+            <div
+              className={`w-24 text-center text-gray-900 p-2 rounded-xl ${
+                items.activity_type == "in" ? "" : ""
+              }`}
+            >
               <div className=' text-3xl font-semibold'>{items.total_crate}</div>
               <div className='text-sm font-medium'>Kerat</div>
             </div>

@@ -14,7 +14,7 @@ const Confirmation = () => {
     <div className='h-screen flex items-center justify-center bg-gray-100 px-8'>
       <div className='bg-white shadow-lg rounded-xl p-8 flex flex-col items-center gap-4 text-center'>
         {/* Spinner */}
-        <div className='w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin'></div>
+        <div className='w-12 h-12 border-4 border-[#20631e] border-t-transparent rounded-full animate-spin'></div>
 
         {/* Heading */}
         <h1 className='text-xl font-bold text-gray-800'>

@@ -67,7 +67,7 @@ export default function Dashboard() {
           uom='Buah'
           title='Total kerat'
           icon={<FaBoxes size='2em' />}
-          className='bg-gray-300 text-gray-700'
+          className='bg-[#20631e] text-white'
           link='/crate/total'
         />
         <DashboardCard
@@ -75,7 +75,7 @@ export default function Dashboard() {
           title='Kerat tersedia'
           icon={<FaBoxes size='2em' />}
           uom='Buah'
-          className='bg-gray-300 text-gray-700'
+          className='bg-[#20631e] text-white'
           link='/crate/available'
         />
         <DashboardCard
@@ -88,7 +88,7 @@ export default function Dashboard() {
             />
           }
           uom='Buah'
-          className='bg-[#8EB486] text-white'
+          className='bg-[#d8e031] text-gray-900'
         />
         <DashboardCard
           value={dataOut}
@@ -100,9 +100,9 @@ export default function Dashboard() {
             />
           }
           uom='Buah'
-          className='bg-[#FF748B] text-white'
+          className='bg-[#e89e35] text-gray-900'
         />
-        <div className='col-span-2'>
+        <div className=''>
           <UseCratePIC />
         </div>
       </div>
