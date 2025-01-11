@@ -24,7 +24,7 @@ const DashboardCard = ({
             </div>
             <div className='flex justify-between items-end'>
               <div className='text-6xl font-semibold flex'>
-                {value || "0"}{" "}
+                {value}{" "}
                 <span className='self-end mb-1 ml-2 text-lg'>{uom}</span>
               </div>
               <div>
@@ -43,8 +43,7 @@ const DashboardCard = ({
           </div>
           <div>
             <div className='text-6xl font-semibold flex'>
-              {value || "0"}{" "}
-              <span className='self-end mb-1 ml-2 text-lg'>{uom}</span>
+              {value} <span className='self-end mb-1 ml-2 text-lg'>{uom}</span>
             </div>
           </div>
         </div>

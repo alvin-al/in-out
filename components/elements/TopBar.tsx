@@ -7,7 +7,7 @@ const TopBar = ({ title }: { title: string }) => {
   const router = useRouter();
 
   return (
-    <div className='w-full font-semibold h-16 bg-white text-gray-700 flex items-center px-4 sticky top-0 z-10 shadow-md'>
+    <div className='w-full font-semibold h-16 bg-[#20631e] text-white flex items-center px-4 sticky top-0 z-10 shadow-md'>
       <div className='w-1/6  '>
         <MyButton onClick={() => router.back()}>
           <ArrowBackIcon />

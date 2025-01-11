@@ -23,7 +23,7 @@ const PICDetail = ({ id }: { id: string }) => {
         setCrate(crate);
       }
     };
-    const time = data?.[0]?.log_time;
+    const time = data && data[0] ? data[0].log_time - 7 : undefined;
     const dateObj = time ? new Date(time) : new Date();
 
     // Format waktu ke jam dan menit
@@ -49,8 +49,8 @@ const PICDetail = ({ id }: { id: string }) => {
     <div>
       <TopBar title={`Detail Kerat ${data?.[0]?.pic_name}`} />
       <div className='p-4 grid grid-cols-2 gap-4'>
-        <div className='bg-slate-100 p-4 rounded-md flex justify-between flex-col'>
-          <div className=''>
+        <div className='bg-slate-100 text-gray-800 p-4 rounded-md flex justify-between flex-col'>
+          <div className='text-white'>
             {" "}
             {data?.[0]?.activity_type == "in" ? (
               <InOutIcon isIn={true} />
@@ -62,7 +62,7 @@ const PICDetail = ({ id }: { id: string }) => {
             {data?.[0]?.pic_name}
           </div>
         </div>
-        <div className='bg-slate-100 p-4 rounded-md flex gap-2 justify-between flex-col'>
+        <div className='bg-slate-100 text-gray-800 p-4 rounded-md flex gap-2 justify-between flex-col'>
           <div className='text-xs font-medium leading-relaxed'>
             <div>{formattedTime} WIB</div>
             <div>{formattedDate}</div>
@@ -74,8 +74,8 @@ const PICDetail = ({ id }: { id: string }) => {
           <ul className='overflow-hidden rounded-md divide-y'>
             {crate?.map((item, index) => (
               <li key={index}>
-                <div className='bg-[#20631e] text-white flex col-span-2 items-center gap-4'>
-                  <div className='w-16 min-h-12 flex bg-green-700 justify-center items-center text-md'>
+                <div className='bg-slate-100 text-gray-800 flex col-span-2 items-center gap-4'>
+                  <div className='w-16 min-h-12 flex border-r justify-center items-center text-md font-semibold'>
                     {index + 1}
                   </div>
                   <div className='text-md'>{item.crate_id}</div>

@@ -51,10 +51,7 @@ const UseCratePIC = () => {
           <ul className='flex flex-col gap-2'>
             {pic.map((item, index) => {
               return (
-                <li
-                  key={index}
-                  className='text-2xl w-full flex justify-between'
-                >
+                <li key={index} className='w-full flex justify-between'>
                   <div className='font-semibold'>{item.user_name}</div>
                   <div>{item.count_id} Kerat</div>
                 </li>

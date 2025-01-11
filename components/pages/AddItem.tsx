@@ -20,6 +20,7 @@ const AddItem = () => {
   const router = useRouter();
 
   const dateToday = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString();
+  console.log(dateToday);
 
   const handlePicChange = (value: string) => {
     setPic(value);
@@ -51,6 +52,7 @@ const AddItem = () => {
       .limit(1); // Mengambil hanya 1 data terakhir
 
     const crateOperator = Number(getCookie("user_token")) || null;
+
     const submitData = listCode.map((items) => ({
       crate_id: items,
       activity_type: activity,

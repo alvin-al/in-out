@@ -43,7 +43,7 @@ const InOutList = () => {
               </div>
               <div className='text-sm font-medium text-gray-800'>
                 <div>
-                  {new Date(items.log_time).toLocaleTimeString("UK", {
+                  {new Date(items.log_time).toLocaleTimeString("id", {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}

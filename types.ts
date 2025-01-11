@@ -33,7 +33,7 @@ export interface CardProps {
   value?: number;
   icon: React.ReactNode;
   title: string;
-  uom: string;
+  uom?: string;
   className?: string;
   link?: string | undefined;
   crateData?: Crate[] | null;
