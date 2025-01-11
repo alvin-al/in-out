@@ -26,7 +26,9 @@ export interface Crate {
   available: boolean;
   number: number;
   last_update: number;
-  user_id: string;
+  user_id: {
+    user_name: string;
+  };
 }
 
 export interface CardProps {

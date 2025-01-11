@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { IoPeople } from "react-icons/io5";
 import supabase from "@/utils/supabase/client";
+import Link from "next/link";
 
 const UseCratePIC = () => {
   const [pic, setPic] = useState<{ user_name: string; count_id: number }[]>([]);
@@ -25,7 +25,8 @@ const UseCratePIC = () => {
   }, []);
 
   return (
-    <Link href='/'>
+    <Link href='/pic-with-crate'>
+      {" "}
       <div
         className={`h-fit bg-[#20631e] text-white rounded-xl flex p-4 flex-wrap gap-5 flex-col`}
       >

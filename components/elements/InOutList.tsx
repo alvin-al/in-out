@@ -26,24 +26,31 @@ const InOutList = () => {
       {data?.map((items, index) => (
         <Link href={`/activity/${items.batches}`} key={index}>
           <div
-            className={`w-full h-fit py-4 items-center flex px-4 rounded-xl shadow-md ${
-              items.activity_type == "in" ? "" : "bg-orange-100"
+            className={`w-full h-fit py-4 flex px-4 rounded-lg ${
+              items.activity_type === "in"
+                ? " border border-gray-300 bg-gray-100"
+                : " border border-gray-300 bg-gray-100"
             }`}
           >
-            <div className='w-24'>
-              {items.activity_type == "in" ? (
+            {/* Icon Section */}
+            <div className='w-20 flex justify-center items-center'>
+              {items.activity_type === "in" ? (
                 <InOutIcon isIn={true} />
               ) : (
                 <InOutIcon isIn={false} />
               )}
             </div>
-            <div className='text-left w-full  border-gray-400 '>
-              <div className='font-semibold text-2xl mb-1'>
+
+            {/* Content Section */}
+            <div className='text-left w-full px-4'>
+              <div className='font-semibold text-xl text-gray-800 mb-1'>
                 {items?.pic_name}
               </div>
-              <div className='text-sm font-medium text-gray-800'>
+              <div className='text-sm text-gray-600'>
                 <div>
-                  {new Date(items.log_time).toLocaleTimeString("id", {
+                  {new Date(
+                    new Date(items.log_time).getTime() - 7 * 60 * 60 * 1000
+                  ).toLocaleTimeString("id", {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}
@@ -54,10 +61,10 @@ const InOutList = () => {
                     const tanggalFormatted = tanggal.toLocaleDateString(
                       "id-ID",
                       {
-                        weekday: "long", // Menampilkan nama hari
-                        day: "2-digit", // Menampilkan tanggal dengan 2 digit
-                        month: "long", // Menampilkan nama bulan
-                        year: "numeric", // Menampilkan tahun
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
                       }
                     );
                     return `${tanggalFormatted}`;
@@ -66,12 +73,14 @@ const InOutList = () => {
                 <div>By: {items.operator_name}</div>
               </div>
             </div>
+
+            {/* Crate Count Section */}
             <div
-              className={`w-24 text-center text-gray-900 p-2 rounded-xl ${
-                items.activity_type == "in" ? "" : ""
+              className={`w-20 flex flex-col items-center justify-center text-white rounded-lg ${
+                items.activity_type === "in" ? "bg-green-600" : "bg-red-600"
               }`}
             >
-              <div className=' text-3xl font-semibold'>{items.total_crate}</div>
+              <div className='text-3xl font-semibold'>{items.total_crate}</div>
               <div className='text-sm font-medium'>Kerat</div>
             </div>
           </div>
