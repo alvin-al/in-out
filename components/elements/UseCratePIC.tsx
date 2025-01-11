@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoPeople } from "react-icons/io5";
 import supabase from "@/utils/supabase/client";
 import Link from "next/link";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 const UseCratePIC = () => {
   const [pic, setPic] = useState<{ user_name: string; count_id: number }[]>([]);
@@ -41,10 +42,13 @@ const UseCratePIC = () => {
             </div>
             <div className='text-xl font-medium'>PIC yang Membawa Kerat</div>
           </div>
-          <div>
+          <div className='pt-4 flex items-center justify-between'>
             <div className='text-6xl font-semibold flex'>
               {pic?.length || 0}
               <span className='self-end mb-1 ml-2 text-lg'>Orang</span>
+            </div>
+            <div>
+              <IoIosArrowRoundForward size='3em' />
             </div>
           </div>
         </div>

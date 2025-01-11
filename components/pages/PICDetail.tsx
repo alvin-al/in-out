@@ -49,7 +49,7 @@ const PICDetail = ({ id }: { id: string }) => {
     <div>
       <TopBar title={`Detail Kerat ${data?.[0]?.pic_name}`} />
       <div className='p-4 grid grid-cols-2 gap-4'>
-        <div className='bg-slate-100 text-gray-800 p-4 rounded-md flex justify-between flex-col'>
+        <div className='bg-slate-100 text-gray-800 p-4 rounded-md flex justify-between flex-col border'>
           <div className='text-white'>
             {" "}
             {data?.[0]?.activity_type == "in" ? (
@@ -62,7 +62,7 @@ const PICDetail = ({ id }: { id: string }) => {
             {data?.[0]?.pic_name}
           </div>
         </div>
-        <div className='bg-slate-100 text-gray-800 p-4 rounded-md flex gap-2 justify-between flex-col'>
+        <div className='bg-slate-100 text-gray-800 p-4 rounded-md flex gap-2 justify-between flex-col border'>
           <div className='text-xs font-medium leading-relaxed'>
             <div>{formattedTime} WIB</div>
             <div>{formattedDate}</div>
@@ -70,8 +70,8 @@ const PICDetail = ({ id }: { id: string }) => {
           </div>
           <div className='text-3xl font-semibold'>{crate?.length} Kerat</div>{" "}
         </div>{" "}
-        <div className=' col-span-2'>
-          <ul className='overflow-hidden rounded-md divide-y'>
+        <div className='border rounded-md col-span-2'>
+          <ul className=' overflow-hidden rounded-md divide-y'>
             {crate?.map((item, index) => (
               <li key={index}>
                 <div className='bg-slate-100 text-gray-800 flex col-span-2 items-center gap-4'>

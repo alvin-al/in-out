@@ -8,7 +8,7 @@
   "background_color": "#ffffff",
   "icons": [
     {
-      "src": "icon512_maskable.png",
+      "src": "icon512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
@@ -40,7 +40,7 @@
   "related_applications": [
     {
       "platform": "play",
-      "id": "com.example.inoutapp"
+      "id": "com.alvinxal.inoutapp"
     }
   ],
   "prefer_related_applications": false

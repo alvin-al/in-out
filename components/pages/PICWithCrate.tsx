@@ -34,10 +34,12 @@ const PICWithCrate = () => {
                 <span className='block text-2xl font-medium text-gray-900'>
                   {crate.crate_code}
                 </span>
-                <span className='block text-sm text-gray-500'>
+                <span className='block text-md text-gray-800'>
                   {crate.user_id.user_name}
                 </span>
-                <span className='block text-sm text-gray-500'>
+              </div>
+              <div>
+                <span className='block text-md text-gray-800'>
                   {new Date(crate.last_update).toLocaleDateString("id-ID", {
                     day: "numeric",
                     month: "long",
