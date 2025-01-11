@@ -1,5 +1,5 @@
 "use client";
-import { Crate, InOutLogs } from "@/types";
+import { Crate } from "@/types";
 import React, { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/client";
 import { FaBoxes } from "react-icons/fa";
@@ -14,22 +14,40 @@ import AddItemButton from "../elements/AddItemButton";
 
 export default function Dashboard() {
   const [crateData, setCrateData] = useState<Crate[] | null>(null);
-  const [inOutData, setInOutData] = useState<InOutLogs[] | null>(null);
+  const [dataIn, setDataIn] = useState<number>();
+  const [dataOut, setDataOut] = useState<number>();
   const [userName, setUserName] = useState<{ user_name: string }[] | null>(
     null
   );
 
   useEffect(() => {
     const userId = getCookie("user_token") as unknown as number | null;
+
     const fetchData = async () => {
-      const [crateData, inOutData, userName] = await Promise.all([
-        supabase.from("crate").select("*"),
-        supabase.from("in_out_logs").select("*"),
-        supabase.from("users").select("user_name").eq("user_id", userId),
-      ]);
-      setCrateData(crateData.data);
-      setInOutData(inOutData.data);
-      setUserName(userName.data);
+      const [crateData, { data: dataOut }, { data: dataIn }, userName] =
+        await Promise.all([
+          supabase.from("crate").select("*"),
+          supabase.rpc("get_count_crate_today", {
+            activity: "out",
+          }),
+          supabase.rpc("get_count_crate_today", {
+            activity: "in",
+          }),
+          supabase.from("users").select("user_name").eq("user_id", userId),
+        ]);
+
+      if (
+        crateData !== null &&
+        dataIn !== null &&
+        dataOut !== null &&
+        userName !== null
+      ) {
+        setCrateData(crateData.data);
+        setDataIn(dataIn);
+        setDataOut(dataOut);
+        setUserName(userName.data);
+      }
+
       return;
     };
 
@@ -61,14 +79,7 @@ export default function Dashboard() {
           link='/crate/available'
         />
         <DashboardCard
-          value={
-            inOutData?.filter(
-              (crate_id) =>
-                crate_id.activity_type === "in" &&
-                new Date(crate_id.timestamp).toDateString() ===
-                  new Date().toDateString()
-            ).length
-          }
+          value={dataIn}
           title='Jumlah In hari ini'
           icon={
             <HiOutlineArrowLeftOnRectangle
@@ -80,14 +91,7 @@ export default function Dashboard() {
           className='bg-[#8EB486] text-white'
         />
         <DashboardCard
-          value={
-            inOutData?.filter(
-              (crate_id) =>
-                crate_id.activity_type === "out" &&
-                new Date(crate_id.timestamp).toDateString() ===
-                  new Date().toDateString()
-            ).length
-          }
+          value={dataOut}
           title='Jumlah Out hari ini'
           icon={
             <HiOutlineArrowLeftStartOnRectangle

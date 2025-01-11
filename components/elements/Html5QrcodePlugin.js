@@ -8,41 +8,45 @@ const qrcodeRegionId = "html5qr-code-full-region";
 const createConfig = (props) => {
   const config = {
     fps: 10,
-    qrbox: { width: 400, height: 400 },
-    disableFlip: true, // Tambahkan ini
+    qrbox: { width: 400, height: 200 },
+    disableFlip: true,
     disableFileScan: true,
   };
-  if (props.fps) {
-    config.fps = props.fps;
-  }
-  if (props.qrbox) {
-    config.qrbox = props.qrbox;
-  }
-  if (props.aspectRatio) {
-    config.aspectRatio = props.aspectRatio;
-  }
-  if (props.disableFlip !== undefined) {
-    config.disableFlip = props.disableFlip;
-  }
+  if (props.fps) config.fps = props.fps;
+  if (props.qrbox) config.qrbox = props.qrbox;
+  if (props.aspectRatio) config.aspectRatio = props.aspectRatio;
+  if (props.disableFlip !== undefined) config.disableFlip = props.disableFlip;
+
   return config;
 };
 
 const Html5QrcodePlugin = (props) => {
   useEffect(() => {
+    // Audio file
+    const audio = new Audio("/beep.mp3");
+
     // when component mounts
     const config = createConfig(props);
     const verbose = props.verbose === false;
-    // Suceess callback is required.
+
+    // Success callback is required.
     if (!props.qrCodeSuccessCallback) {
       throw "qrCodeSuccessCallback is required callback.";
     }
+
+    // Override success callback to add beep sound
+    const qrCodeSuccessCallbackWithSound = (decodedText, decodedResult) => {
+      audio.play(); // Play beep sound
+      props.qrCodeSuccessCallback(decodedText, decodedResult);
+    };
+
     const html5QrcodeScanner = new Html5QrcodeScanner(
       qrcodeRegionId,
       config,
       verbose
     );
     html5QrcodeScanner.render(
-      props.qrCodeSuccessCallback,
+      qrCodeSuccessCallbackWithSound,
       props.qrCodeErrorCallback
     );
 

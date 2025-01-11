@@ -17,7 +17,7 @@ const BentoList = ({
     <div className='bg-white rounded-md shadow-lg overflow-hidden'>
       {/* Header */}
       <div className='bg-gradient-to-r from-blue-500 to-blue-600 p-4'>
-        <h2 className='text-xl font-semibold text-white'>Daftar Kerat</h2>
+        <h2 className='text-base font-semibold text-white'>Daftar Kerat</h2>
       </div>
 
       {/* List Content */}

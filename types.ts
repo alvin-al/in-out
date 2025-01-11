@@ -11,11 +11,12 @@ export interface Users {
 export interface InOutLogs {
   log_id?: number; // Optional jika menggunakan auto-increment di database
   activity_type: string;
-  pic: { user_name: string } | null;
+  pic_name: string | null;
   crate_id: string[]; // Ubah dari object[] ke string[]
-  timestamp: number;
-  operator: { user_name: string } | null;
-  batch_id: string | null;
+  log_time: number;
+  operator_name: string | null;
+  batches: number | null;
+  total_crate: number;
 }
 
 export interface Crate {
@@ -24,6 +25,8 @@ export interface Crate {
   size: string;
   available: boolean;
   number: number;
+  last_update: number;
+  user_id: string;
 }
 
 export interface CardProps {

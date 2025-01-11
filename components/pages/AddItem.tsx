@@ -2,7 +2,6 @@
 import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import Html5QrcodePlugin from "@/components/elements/Html5QrcodePlugin";
-import useCreateData from "@/hooks/useCreateData";
 import BentoList from "../elements/BentoList";
 import ActivityAddItem from "../elements/ActivityAddItem";
 import PICAddItem from "../elements/PICAddItem";
@@ -14,11 +13,13 @@ import TopBar from "../elements/TopBar";
 const AddItem = () => {
   const [listCode, setListCode] = useState<string[]>([]);
   const cooldownRef = useRef<boolean>(false);
-  const { createData } = useCreateData("in_out_logs");
   const [pic, setPic] = useState<string>("");
   const [activity, setActivity] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
+
+  const dateToday = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString();
 
   const handlePicChange = (value: string) => {
     setPic(value);
@@ -40,51 +41,60 @@ const AddItem = () => {
   };
 
   const handleSubmit = async () => {
-    const crateOperator = getCookie("user_token") as unknown as number | null;
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
-    // const submitArrayData = listCode.map((code) => ({
-    //   activity_type: activity,
-    //   pic: pic,
-    //   crate_id: code,
-    //   timestamp: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString(),
-    //   batch_id: `${batch_date}_${pic}`,
-    //   operator: crateOperator,
-    // }));
-    const submitData = {
+    const { data: getBatchNumber } = await supabase
+      .from("in_out_logs")
+      .select("batches")
+      .order("batches", { ascending: false }) // Mengurutkan berdasarkan batches secara descending
+      .limit(1); // Mengambil hanya 1 data terakhir
+
+    const crateOperator = Number(getCookie("user_token")) || null;
+    const submitData = listCode.map((items) => ({
+      crate_id: items,
       activity_type: activity,
       pic: pic,
-      crate_id: listCode,
-      timestamp: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString(),
+      timestamp: dateToday,
       operator: crateOperator,
-    };
+      batches: getBatchNumber?.[0]?.batches + 1 || 1,
+    }));
 
     try {
-      // Kirim data log
-      await createData([submitData]);
+      // Insert log data
+      const { error } = await supabase.from("in_out_logs").insert(submitData);
+      if (error) throw new Error("Gagal mengirim data log");
 
-      // Tentukan status berdasarkan aktivitas
-      const status = activity === "in"; // Bisa langsung menggunakan boolean
-
-      // Lakukan update untuk setiap crate
-      const results = await Promise.all(
+      // Update crate data
+      const status = activity === "in";
+      const results = await Promise.allSettled(
         listCode.map((code) =>
           supabase
             .from("crate")
-            .update({ available: status }) // Pastikan field sesuai dengan yang ada di tabel
+            .update({
+              available: status,
+              last_update: dateToday,
+              user_id: pic,
+            })
             .match({ crate_code: code })
         )
       );
 
-      // Cek apakah ada error pada salah satu hasil update
-      const hasError = results.some((result) => result.error);
-
-      if (hasError) {
-        throw new Error("Failed to update some crates.");
+      // Check if any update failed
+      if (results.some((result) => result.status === "rejected")) {
+        throw new Error("Gagal memperbarui data");
       }
 
       router.push("/confirmation");
     } catch (err) {
       console.error(err);
+      if (err instanceof Error) {
+        alert(err.message || "Terjadi kesalahan");
+      } else {
+        alert("Terjadi kesalahan");
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -93,10 +103,10 @@ const AddItem = () => {
       <TopBar title='Add Item' />
       <div className='p-4 flex flex-col gap-4'>
         {/* Camera scanner */}
-        <div className='h-fit self-center'>
+        <div className='h-48 self-center'>
           <Html5QrcodePlugin
             fps={5}
-            qrbox={150}
+            qrbox={200}
             disableFlip={false}
             qrCodeSuccessCallback={onNewScanResult}
           />
@@ -108,7 +118,10 @@ const AddItem = () => {
         {/* PIC */}
         <PICAddItem onPicChange={handlePicChange} />
         {/* Submit button */}
-        {pic === "" || activity === "" || listCode.length === 0 ? (
+        {pic === "" ||
+        activity === "" ||
+        listCode.length === 0 ||
+        isSubmitting ? (
           <Button variant='contained' disabled onClick={handleSubmit}>
             Submit
           </Button>
