@@ -80,7 +80,7 @@ export default function Dashboard() {
         />
         <DashboardCard
           value={dataIn}
-          title='Jumlah In hari ini'
+          title='Jumlah kerat In hari ini'
           icon={
             <HiOutlineArrowLeftOnRectangle
               size='2em'
@@ -92,7 +92,7 @@ export default function Dashboard() {
         />
         <DashboardCard
           value={dataOut}
-          title='Jumlah Out hari ini'
+          title='Jumlah kerat Out hari ini'
           icon={
             <HiOutlineArrowLeftStartOnRectangle
               size='2em'

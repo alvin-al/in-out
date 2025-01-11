@@ -18,7 +18,7 @@ export default function CrateDetail() {
   }, []);
 
   return (
-    <div className='flex w-full h-full flex-col p-6 gap-6'>
+    <div className='flex w-full h-full flex-col gap-6'>
       <CrateCard
         crateData={crateData}
         uom='Buah'

@@ -16,7 +16,7 @@ const CrateCard = ({ icon, title, uom, crateData }: CardProps) => {
   const sizes = ["Besar", "Sedang", "Kecil"];
 
   return (
-    <div className='w-full h-fit bg-gray-300 rounded-xl flex p-8 flex-col gap-5'>
+    <div className='w-full h-fit flex p-8 flex-col gap-5'>
       {/* Header */}
       <div className='w-full flex justify-between items-center'>
         <div className='flex text-gray-500 gap-4 items-center px-2'>
