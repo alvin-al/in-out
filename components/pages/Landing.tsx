@@ -46,7 +46,7 @@ const Landing = () => {
                   textTransform: "capitalize",
                   fontWeight: 600,
                   paddingX: "32px",
-                  fontSize: "0.8rem",
+                  fontSize: "1rem",
                 }}
               >
                 Login dengan ID Card
