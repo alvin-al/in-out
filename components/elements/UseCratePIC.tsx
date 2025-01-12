@@ -27,7 +27,6 @@ const UseCratePIC = () => {
 
   return (
     <Link href='/pic-with-crate'>
-      {" "}
       <div
         className={`h-fit bg-[#20631e] text-white rounded-xl flex p-4 flex-wrap gap-5 flex-col`}
       >
@@ -36,7 +35,7 @@ const UseCratePIC = () => {
             pic?.length > 0 ? "border-b border-white" : ""
           }`}
         >
-          <div className='flex gap-4'>
+          <div className='flex gap-4 flex-col'>
             <div className=''>
               <IoPeople size='3em' />
             </div>

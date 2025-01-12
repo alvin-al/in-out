@@ -22,8 +22,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex justify-center items-center h-screen w-full'>
-      <div className='bg-white rounded-3xl shadow-lg p-8 w-full max-w-md'>
+    <div className='flex justify-center pt-12 h-screen w-full'>
+      <div className='bg-white rounded-3xl shadow-lg p-8 w-full h-fit max-w-md'>
         {/* Header */}
         <h1 className='text-2xl font-bold text-center text-gray-800 mb-6'>
           Login dengan QR Code
