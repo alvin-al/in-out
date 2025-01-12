@@ -22,7 +22,7 @@ const Landing = () => {
           <div className='w-32 pr-4'>
             <Image src='/logo-white.png' width={108} height={47} alt='logo' />
           </div>
-          <div className='flex flex-col items-center gap-4'>
+          <div className='flex flex-col items-center gap-8'>
             <div>
               <h1 className='font-bold text-3xl text-center'>
                 Mudahkan Pencatatan <br />
@@ -37,7 +37,7 @@ const Landing = () => {
               </p>
             </div>
           </div>
-          <div>
+          <div className='pt-16'>
             <Link href='/login'>
               <Button
                 sx={{
