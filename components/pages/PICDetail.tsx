@@ -75,10 +75,10 @@ const PICDetail = ({ id }: { id: string }) => {
             {crate?.map((item, index) => (
               <li key={index}>
                 <div className='bg-slate-100 text-gray-800 flex col-span-2 items-center gap-4'>
-                  <div className='w-16 min-h-12 flex border-r justify-center items-center text-md font-semibold'>
+                  <div className='w-16 min-h-12 flex border-r justify-center items-center text-xl font-semibold'>
                     {index + 1}
                   </div>
-                  <div className='text-md'>{item.crate_id}</div>
+                  <div className=''>{item.crate_id}</div>
                 </div>
               </li>
             ))}

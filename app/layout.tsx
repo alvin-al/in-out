@@ -28,7 +28,7 @@ export default function RootLayout({
         content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
       />
       <body
-        className={`${jakartaSans.variable} antialiased h-svh w-screen p-0 `}
+        className={`${jakartaSans.variable} antialiased h-svh w-screen p-0 m-0`}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

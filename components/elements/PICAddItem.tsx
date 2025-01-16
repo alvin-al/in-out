@@ -38,8 +38,21 @@ const PICAddItem = ({
     <div className='flex flex-row gap-4 items-center p-4'>
       <div className='w-24'>Nama PIC</div>
       <div>
-        <FormControl sx={{ minWidth: 230, height: "60px", width: "200px" }}>
-          <InputLabel id='demo-simple-select-label'>
+        <FormControl
+          sx={{
+            minWidth: 230,
+            height: "60px",
+            width: "200px",
+          }}
+        >
+          <InputLabel
+            id='demo-simple-select-label'
+            sx={{
+              "&.Mui-focused": {
+                color: "#15803d", // Warna label saat fokus (Hijau)
+              },
+            }}
+          >
             Person in Charge
           </InputLabel>
           <Select
@@ -48,7 +61,12 @@ const PICAddItem = ({
             value={pic}
             label='Person in Charge'
             onChange={handleChange}
-            sx={{ borderRadius: "8px" }}
+            sx={{
+              "borderRadius": "8px",
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#15803d", // Warna border saat fokus (Hijau)
+              },
+            }}
           >
             {data?.map((item, index) => (
               <MenuItem key={index} value={item.user_id}>

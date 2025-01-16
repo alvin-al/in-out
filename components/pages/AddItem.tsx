@@ -105,7 +105,7 @@ const AddItem = () => {
       <TopBar title='Add Item' />
       <div className='p-4 flex flex-col gap-4'>
         {/* Camera scanner */}
-        <div className='self-center p-8'>
+        <div className='self-center px-4 py-12'>
           <Html5QrcodePlugin
             fps={5}
             qrbox={200}
