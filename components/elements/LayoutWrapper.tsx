@@ -10,9 +10,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div>
-      <div className='pb-16'>{children}</div>
-
+    <div >
+      <div className='pb-16 lg:w-[600px]'>{children}</div>
       <BottomBar />
     </div>
   );

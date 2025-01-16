@@ -39,7 +39,7 @@ export default function BottomBar() {
   }
 
   return (
-    <div className='fixed z-10 bottom-0 w-full shadow-sm'>
+    <div className='fixed z-10 bottom-0 w-full lg:w-[600px] shadow-sm'>
       <Box>
         <BottomNavigation
           showLabels
