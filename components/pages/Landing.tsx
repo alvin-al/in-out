@@ -37,7 +37,7 @@ const Landing = () => {
               </p>
             </div>
           </div>
-          <div className='pt-16'>
+          <div className='pt-16 hover:opacity-85'>
             <Link href='/login'>
               <Button
                 sx={{
