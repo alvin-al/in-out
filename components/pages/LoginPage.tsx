@@ -15,14 +15,14 @@ const LoginPage = () => {
       document.cookie = `user_token=${result.user.id}; path=/; max-age=86400`;
       setTimeout(() => {
         window.location.href = "/dashboard";
-      }, 1500);
+      }, 800);
     } else {
       setLoginMessage(result?.message ?? "❌ Login gagal. Coba lagi.");
     }
   };
 
   return (
-    <div className='flex justify-center pt-12 h-screen w-full'>
+    <div className='flex justify-center pt-16 h-screen bg-white w-full'>
       <div className='bg-white rounded-3xl shadow-lg p-8 w-full h-fit max-w-md'>
         {/* Header */}
         <h1 className='text-2xl font-bold text-center text-gray-800 mb-6'>
@@ -32,7 +32,7 @@ const LoginPage = () => {
         {/* QR Scanner Card */}
         <div className='bg-gray-50 p-4 rounded-2xl shadow-inner mb-6'>
           <Html5QrcodePlugin
-            fps={60}
+            fps={5}
             qrbox={250}
             disableFlip={false}
             qrCodeSuccessCallback={onNewScanResult}
